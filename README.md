@@ -58,6 +58,6 @@ To use this command interpreter, all you have to do after starting it (see above
 * <mark>all</mark>: Prints all string representation of all instances based or not on the class name. **Ex: $ all BaseModel or $ all.**
 * <mark>update</mark>: Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). **Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com".**
 * <mark>help</mark>
-* <mark>quit</mark> and <mark>EOF</mark> to exit the program
+* <quit> and EOF to exit the program
 
-_See examples above ^
+*See examples above  ^
