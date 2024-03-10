@@ -52,11 +52,12 @@ $
 ### how to use it:
 To use this command interpreter, all you have to do after starting it (see above), is enter one f these commands:
 
-* ==create==:  Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id. **Ex: $ create BaseModel**
-* ==show==: Prints the string representation of an instance based on the class name and id.**Ex: $ show BaseModel 1234-1234-1234.**
-* ==destroy==:  Deletes an instance based on the class name and id (save the change into the JSON file). **Ex: $ destroy BaseModel 1234-1234-1234.**
-* ==all==: Prints all string representation of all instances based or not on the class name. **Ex: $ all BaseModel or $ all.**
-* ==update==: Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). **Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com".**
-* **help**
-* ==quit== and ==EOF== to exit the program**
+* <mark>create</mark>:  Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id. **Ex: $ create BaseModel**
+* <mark>show</mark>: Prints the string representation of an instance based on the class name and id.**Ex: $ show BaseModel 1234-1234-1234.**
+* <mark>destroy</mark>:  Deletes an instance based on the class name and id (save the change into the JSON file). **Ex: $ destroy BaseModel 1234-1234-1234.**
+* <mark>all</mark>: Prints all string representation of all instances based or not on the class name. **Ex: $ all BaseModel or $ all.**
+* <mark>update</mark>: Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). **Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com".**
+* <mark>help</mark>
+* <mark>quit</mark> and <mark>EOF</mark> to exit the program
 
+_See examples above ^
