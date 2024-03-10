@@ -57,7 +57,8 @@ To use this command interpreter, all you have to do after starting it (see above
 * <mark>destroy</mark>:  Deletes an instance based on the class name and id (save the change into the JSON file). **Ex: $ destroy BaseModel 1234-1234-1234.**
 * <mark>all</mark>: Prints all string representation of all instances based or not on the class name. **Ex: $ all BaseModel or $ all.**
 * <mark>update</mark>: Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). **Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com".**
-* <mark>help</mark>
-* <quit> and EOF to exit the program
+* <span style="background-color: lightgray">help</span>
 
-*See examples above  ^
+* quit and EOF to exit the program
+
+_See examples above
