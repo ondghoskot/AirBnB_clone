@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """File storage engine"""
 import json
-import pathlib
+from pathlib import Path
 from models.base_model import BaseModel
 
 
@@ -31,7 +31,7 @@ class FileStorage:
     def reload(self):
         """deserializes the JSON file to __objects"""
         file_path = Path(FileStorage.__file_path)
-        if file_path.isfile():
+        if file_path.is_file():
             with open(FileStorage.__file_path, mode="r") as file1:
                 FileStorage.__objects = {}
                 for k, v in json.load(file1).items():
