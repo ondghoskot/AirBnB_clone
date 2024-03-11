@@ -8,12 +8,14 @@ import uuid
 class BaseModel:
     """Base class with public instance attributes and methods"""
     format_str = "%Y-%m-%dT%H:%M:%S.%f"
+
     def __init__(self, *args, **kwargs):
         """constructor method for public instance attrs"""
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_At":
-                    setattr(self, key, datetime.strptime(value, BaseModel.format_str))
+                    setattr(self, key, datetime.strptime(value,
+                            BaseModel.format_str))
                 elif key != "__class__":
                     setattr(self, key, value)
 
@@ -23,13 +25,13 @@ class BaseModel:
 
     def __str__(self):
         """prints string represenatation of instance"""
-        return "[{:s}] ({:s}) {}".format(self.__class__.__name__,
-                                           self.id, self.__dict__)
+        return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id,
+                                         self.__dict__)
 
     def save(self):
         """updates the public instance attribute updated_at
            with the current datetime"""
-        self.updated_at = datetime.now()    
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """returns a dictionary containing all keys/values of
