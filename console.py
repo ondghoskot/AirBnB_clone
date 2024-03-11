@@ -23,5 +23,5 @@ class HBNBCommand(cmd.Cmd):
     def empty_line(self):
         pass
 
-    if __name__ == '__main__':
-        HBNBCommand().cmdloop()
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
