@@ -16,11 +16,11 @@ class HBNBCommand(cmd.Cmd):
         """command to exit the program"""
         return True
 
-    def do_help(self):
+    def pls_help(self):
         """help command"""
         print("help command provides info on other existing commands")
 
-    def empty_line(self):
+    def emptyline(self):
         pass
 
 if __name__ == '__main__':
