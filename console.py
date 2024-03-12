@@ -45,7 +45,8 @@ class HBNBCommand(cmd.Cmd):
         if arguments == "":
             print("** class name missing **")
         elif arguments in HBNBCommand.classes:
-            instance = models.base_model.BaseModel()
+            cls = HBNBCommand.classes[arguments]
+            instance = cls()
             instance.save()
             print(instance.id)
         else:
