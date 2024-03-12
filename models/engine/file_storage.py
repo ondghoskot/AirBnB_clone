@@ -30,9 +30,13 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file to __objects"""
+        classes = {"BaseModel": BaseModel, "User": User}
         file_path = Path(FileStorage.__file_path)
         if file_path.is_file():
             with open(FileStorage.__file_path, mode="r") as file1:
                 FileStorage.__objects = {}
                 for k, v in json.load(file1).items():
-                    FileStorage.__objects[k] = BaseModel(**v)
+                    class_name = v.get("__class__")
+                    if class_name in classes:
+                        cls = classes[class_name]
+                        FileStorage.__objects[k] = cls(**v)
