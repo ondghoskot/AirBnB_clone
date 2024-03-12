@@ -100,10 +100,10 @@ class HBNBCommand(cmd.Cmd):
                 elif len(args) == 3:
                     print("** value missing **")
                 else:
-                    args = args[:4]
-                    obj = models.storage.all()[line]
+                    args = args[0:4]
                     args[3] = eval(args[3])
-                    obj.save()
+                    setattr(models.storage.all()[line], args[2], args[3])
+                    models.storage.all()[line].save()
             else:
                 print("** no instance found **")
         elif len(args) == 1:
