@@ -94,9 +94,9 @@ class HBNBCommand(cmd.Cmd):
             for values in models.storage.all().values():
                 print([str(values)])
         elif arguments in HBNBCommand.classes:
-            for keys in models.storage.all():
-                if arguments in keys:
-                    print([str(models.storage.all()[keys])])
+            for keys, values in models.storage.all().items():
+                if keys.split(".")[0] == arguments:
+                    print([str(values)])
         else:
             print("** class doesn't exist **")
 
