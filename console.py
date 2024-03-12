@@ -2,11 +2,17 @@
 """The console aka command interpreter"""
 import cmd
 import models
+from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
     """hbnb command interpreter"""
     prompt = '(hbnb) '
+    classes = {
+            "BaseModel": BaseModel,
+            "User": User
+            }
 
     def do_quit(self, arg0):
         """command to exit the program"""
@@ -28,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         (to the JSON file) and prints the id"""
         if arguments == "":
             print("** class name missing **")
-        elif arguments == "BaseModel":
+        elif arguments in classes:
             instance = models.base_model.BaseModel()
             instance.save()
             print(instance.id)
@@ -41,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
         args = arguments.split()
         if len(args) == 0:
             print ("** class name missing **")
-        elif args[0] != "BaseModel":
+        elif args[0] not in classes:
             print("** class doesn't exist **")
         elif len(args) != 2:
             print("** instance id missing **")
@@ -58,7 +64,7 @@ class HBNBCommand(cmd.Cmd):
         args = arguments.split()
         if len(args) == 0:
             print("** class name missing **")
-        elif args[0] != "BaseModel":
+        elif args[0] not in classes:
             print("** class doesn't exist **")
         elif len(args) != 2:
             print("** instance id missing **")
@@ -76,7 +82,7 @@ class HBNBCommand(cmd.Cmd):
         if arguments == "":
             for values in models.storage.all().values():
                 print([str(values)])
-        elif arguments == "BaseModel":
+        elif arguments in classes:
             for keys in models.storage.all():
                 if arguments in keys:
                     print([str(models.storage.all()[keys])])
@@ -90,7 +96,7 @@ class HBNBCommand(cmd.Cmd):
         args = arguments.split()
         if len(args) == 0:
             print("** class name missing **")
-        elif args[0] != "BaseModel":
+        elif args[0] not in classes:
             print("** class doesn't exist **")
         elif len(args) > 1:
             line = args[0] + "." + args[1]
