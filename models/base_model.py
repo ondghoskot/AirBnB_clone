@@ -13,7 +13,7 @@ class BaseModel:
         """constructor method for public instance attrs"""
         if kwargs:
             for key, value in kwargs.items():
-                if key == "created_at" or key == "updated_At":
+                if key == "created_at" or key == "updated_at":
                     setattr(self, key, datetime.strptime(value,
                             BaseModel.format_str))
                 elif key != "__class__":
