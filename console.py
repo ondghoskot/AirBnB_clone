@@ -138,7 +138,7 @@ class HBNBCommand(cmd.Cmd):
         """accesses methods through a different format"""
         parts = arguments.split(".")
         command = parts[0]
-        first_two= ["all()", "count()"]
+        first_two = ["all()", "count()"]
         method = None
         if command in HBNBCommand.classes:
             if parts[1] == first_two[0]:
@@ -153,7 +153,7 @@ class HBNBCommand(cmd.Cmd):
                 if args:
                     args = args[0].split(", ")
                     args = [eval(arg) if arg.startswith('"')
-                        and arg.endswith('"') else arg for arg in args]
+                            and arg.endswith('"') else arg for arg in args]
                     arguments = f"{command} {' '.join(args)}"
                 else:
                     arguments = command
