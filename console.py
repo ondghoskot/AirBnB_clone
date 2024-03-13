@@ -91,12 +91,12 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all
         instances based or not on the class name"""
         if arguments == "":
-            for values in models.storage.all().values():
-                print([str(values)])
+            for value in storage.all().values():
+                print([str(value)])
         elif arguments in HBNBCommand.classes:
-            for keys, values in models.storage.all().items():
-                if keys.split(".")[0] == arguments:
-                    print([str(values)])
+            for key, value in models.storage.all().items():
+                if key.split(".")[0] == arguments:
+                    print([str(value)])
         else:
             print("** class doesn't exist **")
 
@@ -125,6 +125,44 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         elif len(args) == 1:
             print("** instance id missing **")
+
+    def do_count(self, arguments):
+        """retrieve the number of instances of a class"""
+        count = 0
+        for instance in models.storage.all().keys():
+            if instance.split(".")[0] == arguments:
+                count += 1
+        print(count)
+    def format(self, arguments):
+        """accesses methods through a different format"""
+        methods = ["all()", "count()"]
+        args = arguments.split(".")
+        arguments = args[0]
+        if arguments in HBNBCommand.classes:
+            if args[1] == method[0]:
+                all = getattr(self, 'do_all')
+                all(arguments)
+            elif args[1] == methods[1]:
+                HBNBCommand.do_count()
+            elif args[1].startswith('show("') and args[1].endswith('")'):
+                id = args[1][6:-2]
+                line = line + " " + id
+                show = getattr(self, 'do_show')
+                show(line)
+            elif args[1].startswith('destroy("') and args[1].endswith('")'):
+                id = args[1][9:-2]
+                line = line + " " + id
+                destroy = getattr(self, 'do_destroy')
+                destroy(line)
+            elif args[1].startswith('update(') and args[1].endswith(')'):
+                args[1] = args[1][7:-1]
+                args = args[1].split(", ")
+                for i in range(min(len(args), 2)):
+                    args[i] = eval(args[i])
+                line += " " +  " ".join(args)
+                update = getattr(self, 'do_update')
+                update(line)
+
 
 
 if __name__ == '__main__':
