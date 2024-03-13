@@ -135,16 +135,29 @@ class HBNBCommand(cmd.Cmd):
         print(count)
     def default(self, arguments):
         """accesses methods through a different format"""
-        methods = ["all()", "count()"]
-        args = arguments.split(".")
-        arguments = args[0]
-        if arguments in HBNBCommand.classes:
-            if args[1] == methods[0]:
+        parts = arguments.split(".")
+        command = parts[0]
+        first_two= ["all()", "count()"]
+        method = None
+        if command in HBNBCommand.classes:
+            if parts[1] == first_two[0]:
                 all = getattr(self, 'do_all')
-                all(arguments)
-            elif args[1] == methods[1]:
+                all(command)
+            elif parts[1] == first_two[1]:
                 HBNBCommand.do_count(self, arguments)
-
+            else:
+                method_name, *args = parts[1].rstrip(')').split("(")
+                if hasattr(self, f"do_{method_name}"):
+                    method = getattr(self, f"do_{method_name}")
+                if args:
+                    args = args[0].split(", ")
+                    args = [eval(arg) if arg.startswith('"')
+                        and arg.endswith('"') else arg for arg in args]
+                    arguments = f"{command} {' '.join(args)}"
+                else:
+                    arguments = command
+            if method:
+                method(arguments)
 
 
 if __name__ == '__main__':
