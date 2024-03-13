@@ -129,10 +129,11 @@ class HBNBCommand(cmd.Cmd):
     def do_count(self, arguments):
         """retrieve the number of instances of a class"""
         count = 0
-        for instance in models.storage.all().keys():
-            if instance.split(".")[0] == arguments:
+        for instance in models.storage.all().values():
+            if instance.__class__.__name__ == arguments:
                 count += 1
         print(count)
+
     def default(self, arguments):
         """accesses methods through a different format"""
         parts = arguments.split(".")
@@ -144,7 +145,7 @@ class HBNBCommand(cmd.Cmd):
                 all = getattr(self, 'do_all')
                 all(command)
             elif parts[1] == first_two[1]:
-                HBNBCommand.do_count(self, arguments)
+                HBNBCommand.do_count(self, command)
             else:
                 method_name, *args = parts[1].rstrip(')').split("(")
                 if hasattr(self, f"do_{method_name}"):
