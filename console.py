@@ -133,35 +133,17 @@ class HBNBCommand(cmd.Cmd):
             if instance.split(".")[0] == arguments:
                 count += 1
         print(count)
-    def format(self, arguments):
+    def default(self, arguments):
         """accesses methods through a different format"""
         methods = ["all()", "count()"]
         args = arguments.split(".")
         arguments = args[0]
         if arguments in HBNBCommand.classes:
-            if args[1] == method[0]:
+            if args[1] == methods[0]:
                 all = getattr(self, 'do_all')
                 all(arguments)
             elif args[1] == methods[1]:
-                HBNBCommand.do_count()
-            elif args[1].startswith('show("') and args[1].endswith('")'):
-                id = args[1][6:-2]
-                line = line + " " + id
-                show = getattr(self, 'do_show')
-                show(line)
-            elif args[1].startswith('destroy("') and args[1].endswith('")'):
-                id = args[1][9:-2]
-                line = line + " " + id
-                destroy = getattr(self, 'do_destroy')
-                destroy(line)
-            elif args[1].startswith('update(') and args[1].endswith(')'):
-                args[1] = args[1][7:-1]
-                args = args[1].split(", ")
-                for i in range(min(len(args), 2)):
-                    args[i] = eval(args[i])
-                line += " " +  " ".join(args)
-                update = getattr(self, 'do_update')
-                update(line)
+                HBNBCommand.do_count(self, arguments)
 
 
 
